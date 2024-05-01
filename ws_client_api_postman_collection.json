@@ -1,10 +1,11 @@
 {
 	"info": {
-		"_postman_id": "d21f1846-6fe6-402e-ba79-ef151f3f7113",
+		"_postman_id": "8da19120-0dc7-43d3-b4c3-0fa5c66696ba",
 		"name": "Worksection Client API",
 		"description": "Worksection API allows you to access our service and get/send data for simultaneous interaction of the service with other programs\n\n---\n\nTo get access to Worksection API you can use:\n\n- admin token\n- oauth2 access token\n    \n\n---\n\nTo use **admin token**:\n\n1. get Worksection API key (see [details](https://worksection.com/en/faq/api-start.html#q1638))\n2. save it into Postman '_api'_ collection variable  \n    path: `'Worksection Client API' collection folder -> 'Variables' tab ->` **`'Current value' column`**\n3. save your Worksection account URL into Postman '_account_url_' collection variable  \n    example: `https://youraccount.worksection.com`\n4. enable Postman '_admin_token_' collection variable\n5. save collection\n6. you are ready to go\n    \n\n---\n\nTo use **oauth2 access token**:  \n_\\*if you don't have this token_\n\n1. create Worksection API app (see [details](https://worksection.com/en/faq/oauth.html#q1812))\n2. save its '_Client ID_', '_Client Secret_' and '_Redirect URL_' into Postman '_client_id_', '_client_secret_' and '_redirect_url_' collection variables  \n    path: `'Worksection Client API' collection folder -> 'Variables' tab ->` **`'Current value' column`**\n3. save your Worksection account URL into Postman '_account_url_' collection variable  \n    example: `https://youraccount.worksection.com`\n4. disable Postman '_admin_token_' collection variable\n5. save collection\n6. create access token  \n    path: `'Worksection Client API' collection folder -> 'Authorization' tab -> 'Get New Access Token' button`\n7. apply this token with '_Use Token_' button\n8. you are ready to go\n    \n\n---\n\nTo use **oauth2 access token**:  \n_\\*if you already have this token_\n\n1. save your Worksection account URL into Postman '_account_url_' collection variable  \n    example: `https://youraccount.worksection.com`\n2. save collection\n3. save your token into Postman '_Token_' input  \n    path: `'Worksection Client API' collection folder -> 'Authorization' tab ->` **`'Current value' column`**\n    \n4. you are ready to go",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "12328152"
+		"_exporter_id": "12328152",
+		"_collection_link": "https://worksection-api.postman.co/workspace/Worksection-API~a01e4042-93f8-484d-8bfb-76dc19931913/collection/12328152-8da19120-0dc7-43d3-b4c3-0fa5c66696ba?action=share&source=collection_link&creator=12328152"
 	},
 	"item": [
 		{
@@ -19,7 +20,8 @@
 								"exec": [
 									""
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
 							}
 						}
 					],
@@ -27,9 +29,13 @@
 						"method": "POST",
 						"header": [],
 						"url": {
-							"raw": "{{account_url}}{{token_uri}}?action=me",
+							"raw": "{{account_url}}/api/oauth2?action=me",
 							"host": [
-								"{{account_url}}{{token_uri}}"
+								"{{account_url}}"
+							],
+							"path": [
+								"api",
+								"oauth2"
 							],
 							"query": [
 								{
@@ -2053,7 +2059,7 @@
 								{
 									"key": "filter",
 									"value": "",
-									"description": "(Optional) Project status, possible values: **active|pending|archive**\n\n_active_ - active projects\n_pending_ - sleeping projects (muted, so don't send notifications)\n_archive_ - archived projects",
+									"description": "(Optional) Project state, possible values: **active|pending|archive**\n\n_active_ - active projects\n_pending_ - sleeping projects (muted, so don't send notifications)\n_archive_ - archived projects",
 									"disabled": true
 								},
 								{
@@ -7207,7 +7213,8 @@
 								"exec": [
 									""
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
 							}
 						}
 					],
@@ -7258,7 +7265,7 @@
 								{
 									"key": "status",
 									"value": "",
-									"description": "(Optional) Task status, possible values: **active|done**\n\n_active_ - incomplete tasks\n_done_ - completed tasks",
+									"description": "(Optional) Task state, possible values: **active|done**\n\n_active_ - incomplete tasks\n_done_ - completed tasks",
 									"disabled": true
 								},
 								{
@@ -7999,356 +8006,6 @@
 			"name": "Tags",
 			"item": [
 				{
-					"name": "get_task_tag_groups",
-					"event": [
-						{
-							"listen": "prerequest",
-							"script": {
-								"exec": [
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [],
-						"url": {
-							"raw": "{{account_url}}{{token_uri}}?action=get_task_tag_groups",
-							"host": [
-								"{{account_url}}{{token_uri}}"
-							],
-							"query": [
-								{
-									"key": "action",
-									"value": "get_task_tag_groups",
-									"description": "(Required) API action"
-								},
-								{
-									"key": "type",
-									"value": "",
-									"description": "(Optional) Tags of a particular group type, possible values: **status|label**",
-									"disabled": true
-								},
-								{
-									"key": "access",
-									"value": "",
-									"description": "(Optional) Tags with a particular visibility, possible values: **public|private**\n\n_public_ - available to all teams (including external client teams)\n_private_ - available only for your company teams",
-									"disabled": true
-								}
-							]
-						},
-						"description": "###### Returns task tag groups"
-					},
-					"response": [
-						{
-							"name": "success",
-							"originalRequest": {
-								"method": "POST",
-								"header": [],
-								"url": {
-									"raw": "{{account_url}}{{token_uri}}?action=get_task_tag_groups",
-									"host": [
-										"{{account_url}}{{token_uri}}"
-									],
-									"query": [
-										{
-											"key": "action",
-											"value": "get_task_tag_groups",
-											"description": "(Required) API action"
-										},
-										{
-											"key": "type",
-											"value": "",
-											"description": "(Optional) Tags of a particular group type, possible values: **status|label**",
-											"disabled": true
-										},
-										{
-											"key": "access",
-											"value": "",
-											"description": "(Optional) Tags with a particular visibility, possible values: **public|private**\n\n_public_ - available to all teams (including external client teams)\n_private_ - available only for your company teams",
-											"disabled": true
-										}
-									]
-								}
-							},
-							"status": "OK",
-							"code": 200,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "Server",
-									"value": "nginx/1.18.0 (Ubuntu)"
-								},
-								{
-									"key": "Date",
-									"value": "Wed, 10 Jan 2024 10:55:58 GMT"
-								},
-								{
-									"key": "Content-Type",
-									"value": "application/json; charset=utf-8"
-								},
-								{
-									"key": "Transfer-Encoding",
-									"value": "chunked"
-								},
-								{
-									"key": "Connection",
-									"value": "keep-alive"
-								},
-								{
-									"key": "Expires",
-									"value": "Thu, 19 Nov 1981 08:52:00 GMT"
-								},
-								{
-									"key": "Cache-Control",
-									"value": "no-store, no-cache, must-revalidate"
-								},
-								{
-									"key": "Pragma",
-									"value": "no-cache"
-								},
-								{
-									"key": "X-Frame-Options",
-									"value": "SAMEORIGIN"
-								},
-								{
-									"key": "Access-Control-Allow-Origin",
-									"value": "*"
-								},
-								{
-									"key": "Content-Encoding",
-									"value": "gzip"
-								}
-							],
-							"cookie": [],
-							"body": "{\n    \"status\": \"ok\",\n    \"data\": [\n        {\n            \"title\": \"Basic workflow\",\n            \"id\": 100,\n            \"type\": \"status\",\n            \"access\": \"public\"\n        },\n        {\n            \"title\": \"Sales\",\n            \"id\": 104,\n            \"type\": \"status\",\n            \"access\": \"public\"\n        },\n        {\n            \"title\": \"Finance\",\n            \"id\": 105,\n            \"type\": \"label\",\n            \"access\": \"public\"\n        },\n        {\n            \"title\": \"General labels\",\n            \"id\": 101,\n            \"type\": \"label\",\n            \"access\": \"public\"\n        },\n        {\n            \"title\": \"Time tracking types\",\n            \"id\": 106,\n            \"type\": \"label\",\n            \"access\": \"public\"\n        },\n        {\n            \"title\": \"Task results\",\n            \"id\": 102,\n            \"type\": \"label\",\n            \"access\": \"private\"\n        }\n    ]\n}"
-						}
-					]
-				},
-				{
-					"name": "add_task_tag_groups",
-					"event": [
-						{
-							"listen": "prerequest",
-							"script": {
-								"exec": [
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [],
-						"url": {
-							"raw": "{{account_url}}{{token_uri}}?action=add_task_tag_groups&type=&access&title",
-							"host": [
-								"{{account_url}}{{token_uri}}"
-							],
-							"query": [
-								{
-									"key": "action",
-									"value": "add_task_tag_groups",
-									"description": "(Required) API action"
-								},
-								{
-									"key": "type",
-									"value": "",
-									"description": "(Required) Group type, possible values: **status|label**"
-								},
-								{
-									"key": "access",
-									"value": null,
-									"description": "(Required) Tag group visibility (statuses are always visible and have public value), possible values: **public|private**\n\n_public_ - available to all teams (including external client teams)\n_private_ - available only for your company teams"
-								},
-								{
-									"key": "title",
-									"value": null,
-									"description": "(Required) Group names separated by commas"
-								}
-							]
-						},
-						"description": "###### Creates task tag groups\n\n_\\*if there are no tag groups with same name_"
-					},
-					"response": [
-						{
-							"name": "success",
-							"originalRequest": {
-								"method": "POST",
-								"header": [],
-								"url": {
-									"raw": "{{account_url}}{{token_uri}}?action=add_task_tag_groups&access=public&type=label&title=Development,Marketing",
-									"host": [
-										"{{account_url}}{{token_uri}}"
-									],
-									"query": [
-										{
-											"key": "action",
-											"value": "add_task_tag_groups",
-											"description": "(Required) API action"
-										},
-										{
-											"key": "access",
-											"value": "public",
-											"description": "(Required) Tag group visibility (statuses are always visible and have public value), possible values: **public|private**\n\n_public_ - available to all teams (including external client teams)\n_private_ - available only for your company teams"
-										},
-										{
-											"key": "type",
-											"value": "label",
-											"description": "(Required) Group type, possible values: **status|label**"
-										},
-										{
-											"key": "title",
-											"value": "Development,Marketing",
-											"description": "(Required) Group names separated by commas"
-										}
-									]
-								}
-							},
-							"status": "OK",
-							"code": 200,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "Server",
-									"value": "nginx/1.18.0 (Ubuntu)"
-								},
-								{
-									"key": "Date",
-									"value": "Wed, 10 Jan 2024 10:59:37 GMT"
-								},
-								{
-									"key": "Content-Type",
-									"value": "application/json; charset=utf-8"
-								},
-								{
-									"key": "Transfer-Encoding",
-									"value": "chunked"
-								},
-								{
-									"key": "Connection",
-									"value": "keep-alive"
-								},
-								{
-									"key": "Expires",
-									"value": "Thu, 19 Nov 1981 08:52:00 GMT"
-								},
-								{
-									"key": "Cache-Control",
-									"value": "no-store, no-cache, must-revalidate"
-								},
-								{
-									"key": "Pragma",
-									"value": "no-cache"
-								},
-								{
-									"key": "X-Frame-Options",
-									"value": "SAMEORIGIN"
-								},
-								{
-									"key": "Access-Control-Allow-Origin",
-									"value": "*"
-								},
-								{
-									"key": "Content-Encoding",
-									"value": "gzip"
-								}
-							],
-							"cookie": [],
-							"body": "{\n    \"status\": \"ok\",\n    \"data\": [\n        {\n            \"title\": \"Development\",\n            \"id\": 110,\n            \"type\": \"label\",\n            \"access\": \"public\"\n        },\n        {\n            \"title\": \"Marketing\",\n            \"id\": 111,\n            \"type\": \"label\",\n            \"access\": \"public\"\n        }\n    ]\n}"
-						},
-						{
-							"name": "error",
-							"originalRequest": {
-								"method": "POST",
-								"header": [],
-								"url": {
-									"raw": "{{account_url}}{{token_uri}}?action=add_task_tag_groups&access=public&type=label&title",
-									"host": [
-										"{{account_url}}{{token_uri}}"
-									],
-									"query": [
-										{
-											"key": "action",
-											"value": "add_task_tag_groups",
-											"description": "(Required) API action"
-										},
-										{
-											"key": "access",
-											"value": "public",
-											"description": "(Required) Tag group visibility (statuses are always visible and have public value), possible values: **public|private**\n\n_public_ - available to all teams (including external client teams)\n_private_ - available only for your company teams"
-										},
-										{
-											"key": "type",
-											"value": "label",
-											"description": "(Required) Group type, possible values: **status|label**"
-										},
-										{
-											"key": "title",
-											"value": null,
-											"description": "(Required) Group names separated by commas"
-										}
-									]
-								}
-							},
-							"status": "OK",
-							"code": 200,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "Server",
-									"value": "nginx/1.18.0 (Ubuntu)"
-								},
-								{
-									"key": "Date",
-									"value": "Wed, 10 Jan 2024 10:58:09 GMT"
-								},
-								{
-									"key": "Content-Type",
-									"value": "application/json; charset=utf-8"
-								},
-								{
-									"key": "Transfer-Encoding",
-									"value": "chunked"
-								},
-								{
-									"key": "Connection",
-									"value": "keep-alive"
-								},
-								{
-									"key": "Expires",
-									"value": "Thu, 19 Nov 1981 08:52:00 GMT"
-								},
-								{
-									"key": "Cache-Control",
-									"value": "no-store, no-cache, must-revalidate"
-								},
-								{
-									"key": "Pragma",
-									"value": "no-cache"
-								},
-								{
-									"key": "X-Frame-Options",
-									"value": "SAMEORIGIN"
-								},
-								{
-									"key": "Access-Control-Allow-Origin",
-									"value": "*"
-								},
-								{
-									"key": "Content-Encoding",
-									"value": "gzip"
-								}
-							],
-							"cookie": [],
-							"body": "{\n    \"status\": \"error\",\n    \"status_code\": 10,\n    \"message\": \"Field is required\",\n    \"message_details\": \"title\"\n}"
-						}
-					]
-				},
-				{
 					"name": "get_task_tags",
 					"event": [
 						{
@@ -8919,7 +8576,7 @@
 					]
 				},
 				{
-					"name": "get_project_tag_groups",
+					"name": "get_task_tag_groups",
 					"event": [
 						{
 							"listen": "prerequest",
@@ -8935,14 +8592,14 @@
 						"method": "POST",
 						"header": [],
 						"url": {
-							"raw": "{{account_url}}{{token_uri}}?action=get_project_tag_groups",
+							"raw": "{{account_url}}{{token_uri}}?action=get_task_tag_groups",
 							"host": [
 								"{{account_url}}{{token_uri}}"
 							],
 							"query": [
 								{
 									"key": "action",
-									"value": "get_project_tag_groups",
+									"value": "get_task_tag_groups",
 									"description": "(Required) API action"
 								},
 								{
@@ -8959,7 +8616,7 @@
 								}
 							]
 						},
-						"description": "###### Returns project tag groups"
+						"description": "###### Returns task tag groups"
 					},
 					"response": [
 						{
@@ -8968,14 +8625,14 @@
 								"method": "POST",
 								"header": [],
 								"url": {
-									"raw": "{{account_url}}{{token_uri}}?action=get_project_tag_groups",
+									"raw": "{{account_url}}{{token_uri}}?action=get_task_tag_groups",
 									"host": [
 										"{{account_url}}{{token_uri}}"
 									],
 									"query": [
 										{
 											"key": "action",
-											"value": "get_project_tag_groups",
+											"value": "get_task_tag_groups",
 											"description": "(Required) API action"
 										},
 										{
@@ -9003,7 +8660,7 @@
 								},
 								{
 									"key": "Date",
-									"value": "Wed, 10 Jan 2024 11:19:55 GMT"
+									"value": "Wed, 10 Jan 2024 10:55:58 GMT"
 								},
 								{
 									"key": "Content-Type",
@@ -9043,12 +8700,12 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"status\": \"ok\",\n    \"data\": [\n        {\n            \"title\": \"Project status\",\n            \"id\": 97,\n            \"type\": \"status\",\n            \"access\": \"public\"\n        },\n        {\n            \"title\": \"Common labels\",\n            \"id\": 98,\n            \"type\": \"label\",\n            \"access\": \"public\"\n        },\n        {\n            \"title\": \"Internal labels\",\n            \"id\": 99,\n            \"type\": \"label\",\n            \"access\": \"private\"\n        }\n    ]\n}"
+							"body": "{\n    \"status\": \"ok\",\n    \"data\": [\n        {\n            \"title\": \"Basic workflow\",\n            \"id\": 100,\n            \"type\": \"status\",\n            \"access\": \"public\"\n        },\n        {\n            \"title\": \"Sales\",\n            \"id\": 104,\n            \"type\": \"status\",\n            \"access\": \"public\"\n        },\n        {\n            \"title\": \"Finance\",\n            \"id\": 105,\n            \"type\": \"label\",\n            \"access\": \"public\"\n        },\n        {\n            \"title\": \"General labels\",\n            \"id\": 101,\n            \"type\": \"label\",\n            \"access\": \"public\"\n        },\n        {\n            \"title\": \"Time tracking types\",\n            \"id\": 106,\n            \"type\": \"label\",\n            \"access\": \"public\"\n        },\n        {\n            \"title\": \"Task results\",\n            \"id\": 102,\n            \"type\": \"label\",\n            \"access\": \"private\"\n        }\n    ]\n}"
 						}
 					]
 				},
 				{
-					"name": "add_project_tag_groups",
+					"name": "add_task_tag_groups",
 					"event": [
 						{
 							"listen": "prerequest",
@@ -9064,29 +8721,34 @@
 						"method": "POST",
 						"header": [],
 						"url": {
-							"raw": "{{account_url}}{{token_uri}}?action=add_project_tag_groups&title=&access=",
+							"raw": "{{account_url}}{{token_uri}}?action=add_task_tag_groups&type=&access&title",
 							"host": [
 								"{{account_url}}{{token_uri}}"
 							],
 							"query": [
 								{
 									"key": "action",
-									"value": "add_project_tag_groups",
+									"value": "add_task_tag_groups",
 									"description": "(Required) API action"
 								},
 								{
-									"key": "title",
+									"key": "type",
 									"value": "",
-									"description": "(Required) Group names separated by commas"
+									"description": "(Required) Group type, possible values: **status|label**"
 								},
 								{
 									"key": "access",
-									"value": "",
-									"description": "(Required) Tag group visibility, possible values: **public|private**\n\n_public_ - available to all teams (including external client teams)\n_private_ - available only for your company teams"
+									"value": null,
+									"description": "(Required) Tag group visibility (statuses are always visible and have public value), possible values: **public|private**\n\n_public_ - available to all teams (including external client teams)\n_private_ - available only for your company teams"
+								},
+								{
+									"key": "title",
+									"value": null,
+									"description": "(Required) Group names separated by commas"
 								}
 							]
 						},
-						"description": "###### Creates project tag groups\n\n_\\*if there are no tags with the same name_"
+						"description": "###### Creates task tag groups\n\n_\\*if there are no tag groups with same name_"
 					},
 					"response": [
 						{
@@ -9095,24 +8757,29 @@
 								"method": "POST",
 								"header": [],
 								"url": {
-									"raw": "{{account_url}}{{token_uri}}?action=add_project_tag_groups&access=public&title=Budget level, Devs number",
+									"raw": "{{account_url}}{{token_uri}}?action=add_task_tag_groups&access=public&type=label&title=Development,Marketing",
 									"host": [
 										"{{account_url}}{{token_uri}}"
 									],
 									"query": [
 										{
 											"key": "action",
-											"value": "add_project_tag_groups",
+											"value": "add_task_tag_groups",
 											"description": "(Required) API action"
 										},
 										{
 											"key": "access",
 											"value": "public",
-											"description": "(Required) Tag group visibility, possible values: **public|private**\n\n_public_ - available to all teams (including external client teams)\n_private_ - available only for your company teams"
+											"description": "(Required) Tag group visibility (statuses are always visible and have public value), possible values: **public|private**\n\n_public_ - available to all teams (including external client teams)\n_private_ - available only for your company teams"
+										},
+										{
+											"key": "type",
+											"value": "label",
+											"description": "(Required) Group type, possible values: **status|label**"
 										},
 										{
 											"key": "title",
-											"value": "Budget level, Devs number",
+											"value": "Development,Marketing",
 											"description": "(Required) Group names separated by commas"
 										}
 									]
@@ -9128,7 +8795,7 @@
 								},
 								{
 									"key": "Date",
-									"value": "Wed, 10 Jan 2024 11:24:07 GMT"
+									"value": "Wed, 10 Jan 2024 10:59:37 GMT"
 								},
 								{
 									"key": "Content-Type",
@@ -9168,7 +8835,7 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"status\": \"ok\",\n    \"data\": [\n        {\n            \"title\": \"Budget level\",\n            \"id\": 113,\n            \"type\": \"\",\n            \"access\": \"public\"\n        },\n        {\n            \"title\": \"Devs number\",\n            \"id\": 114,\n            \"type\": \"\",\n            \"access\": \"public\"\n        }\n    ]\n}"
+							"body": "{\n    \"status\": \"ok\",\n    \"data\": [\n        {\n            \"title\": \"Development\",\n            \"id\": 110,\n            \"type\": \"label\",\n            \"access\": \"public\"\n        },\n        {\n            \"title\": \"Marketing\",\n            \"id\": 111,\n            \"type\": \"label\",\n            \"access\": \"public\"\n        }\n    ]\n}"
 						},
 						{
 							"name": "error",
@@ -9176,24 +8843,29 @@
 								"method": "POST",
 								"header": [],
 								"url": {
-									"raw": "{{account_url}}{{token_uri}}?action=add_project_tag_groups&access=public&title=",
+									"raw": "{{account_url}}{{token_uri}}?action=add_task_tag_groups&access=public&type=label&title",
 									"host": [
 										"{{account_url}}{{token_uri}}"
 									],
 									"query": [
 										{
 											"key": "action",
-											"value": "add_project_tag_groups",
+											"value": "add_task_tag_groups",
 											"description": "(Required) API action"
 										},
 										{
 											"key": "access",
 											"value": "public",
-											"description": "(Required) Tag group visibility, possible values: **public|private**\n\n_public_ - available to all teams (including external client teams)\n_private_ - available only for your company teams"
+											"description": "(Required) Tag group visibility (statuses are always visible and have public value), possible values: **public|private**\n\n_public_ - available to all teams (including external client teams)\n_private_ - available only for your company teams"
+										},
+										{
+											"key": "type",
+											"value": "label",
+											"description": "(Required) Group type, possible values: **status|label**"
 										},
 										{
 											"key": "title",
-											"value": "",
+											"value": null,
 											"description": "(Required) Group names separated by commas"
 										}
 									]
@@ -9209,7 +8881,7 @@
 								},
 								{
 									"key": "Date",
-									"value": "Wed, 10 Jan 2024 11:21:29 GMT"
+									"value": "Wed, 10 Jan 2024 10:58:09 GMT"
 								},
 								{
 									"key": "Content-Type",
@@ -9822,6 +9494,341 @@
 							"body": "{\n    \"status\": \"error\",\n    \"status_code\": 16,\n    \"message\": \"Tag is invalid\",\n    \"message_details\": \"declined\"\n}"
 						}
 					]
+				},
+				{
+					"name": "get_project_tag_groups",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{account_url}}{{token_uri}}?action=get_project_tag_groups",
+							"host": [
+								"{{account_url}}{{token_uri}}"
+							],
+							"query": [
+								{
+									"key": "action",
+									"value": "get_project_tag_groups",
+									"description": "(Required) API action"
+								},
+								{
+									"key": "type",
+									"value": "",
+									"description": "(Optional) Tags of a particular group type, possible values: **status|label**",
+									"disabled": true
+								},
+								{
+									"key": "access",
+									"value": "",
+									"description": "(Optional) Tags with a particular visibility, possible values: **public|private**\n\n_public_ - available to all teams (including external client teams)\n_private_ - available only for your company teams",
+									"disabled": true
+								}
+							]
+						},
+						"description": "###### Returns project tag groups"
+					},
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{account_url}}{{token_uri}}?action=get_project_tag_groups",
+									"host": [
+										"{{account_url}}{{token_uri}}"
+									],
+									"query": [
+										{
+											"key": "action",
+											"value": "get_project_tag_groups",
+											"description": "(Required) API action"
+										},
+										{
+											"key": "type",
+											"value": "",
+											"description": "(Optional) Tags of a particular group type, possible values: **status|label**",
+											"disabled": true
+										},
+										{
+											"key": "access",
+											"value": "",
+											"description": "(Optional) Tags with a particular visibility, possible values: **public|private**\n\n_public_ - available to all teams (including external client teams)\n_private_ - available only for your company teams",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.18.0 (Ubuntu)"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 10 Jan 2024 11:19:55 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Expires",
+									"value": "Thu, 19 Nov 1981 08:52:00 GMT"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-store, no-cache, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"ok\",\n    \"data\": [\n        {\n            \"title\": \"Project status\",\n            \"id\": 97,\n            \"type\": \"status\",\n            \"access\": \"public\"\n        },\n        {\n            \"title\": \"Common labels\",\n            \"id\": 98,\n            \"type\": \"label\",\n            \"access\": \"public\"\n        },\n        {\n            \"title\": \"Internal labels\",\n            \"id\": 99,\n            \"type\": \"label\",\n            \"access\": \"private\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "add_project_tag_groups",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{account_url}}{{token_uri}}?action=add_project_tag_groups&title=&access=",
+							"host": [
+								"{{account_url}}{{token_uri}}"
+							],
+							"query": [
+								{
+									"key": "action",
+									"value": "add_project_tag_groups",
+									"description": "(Required) API action"
+								},
+								{
+									"key": "title",
+									"value": "",
+									"description": "(Required) Group names separated by commas"
+								},
+								{
+									"key": "access",
+									"value": "",
+									"description": "(Required) Tag group visibility, possible values: **public|private**\n\n_public_ - available to all teams (including external client teams)\n_private_ - available only for your company teams"
+								}
+							]
+						},
+						"description": "###### Creates project tag groups\n\n_\\*if there are no tags with the same name_"
+					},
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{account_url}}{{token_uri}}?action=add_project_tag_groups&access=public&title=Budget level, Devs number",
+									"host": [
+										"{{account_url}}{{token_uri}}"
+									],
+									"query": [
+										{
+											"key": "action",
+											"value": "add_project_tag_groups",
+											"description": "(Required) API action"
+										},
+										{
+											"key": "access",
+											"value": "public",
+											"description": "(Required) Tag group visibility, possible values: **public|private**\n\n_public_ - available to all teams (including external client teams)\n_private_ - available only for your company teams"
+										},
+										{
+											"key": "title",
+											"value": "Budget level, Devs number",
+											"description": "(Required) Group names separated by commas"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.18.0 (Ubuntu)"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 10 Jan 2024 11:24:07 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Expires",
+									"value": "Thu, 19 Nov 1981 08:52:00 GMT"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-store, no-cache, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"ok\",\n    \"data\": [\n        {\n            \"title\": \"Budget level\",\n            \"id\": 113,\n            \"type\": \"\",\n            \"access\": \"public\"\n        },\n        {\n            \"title\": \"Devs number\",\n            \"id\": 114,\n            \"type\": \"\",\n            \"access\": \"public\"\n        }\n    ]\n}"
+						},
+						{
+							"name": "error",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{account_url}}{{token_uri}}?action=add_project_tag_groups&access=public&title=",
+									"host": [
+										"{{account_url}}{{token_uri}}"
+									],
+									"query": [
+										{
+											"key": "action",
+											"value": "add_project_tag_groups",
+											"description": "(Required) API action"
+										},
+										{
+											"key": "access",
+											"value": "public",
+											"description": "(Required) Tag group visibility, possible values: **public|private**\n\n_public_ - available to all teams (including external client teams)\n_private_ - available only for your company teams"
+										},
+										{
+											"key": "title",
+											"value": "",
+											"description": "(Required) Group names separated by commas"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.18.0 (Ubuntu)"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 10 Jan 2024 11:21:29 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Expires",
+									"value": "Thu, 19 Nov 1981 08:52:00 GMT"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-store, no-cache, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"error\",\n    \"status_code\": 10,\n    \"message\": \"Field is required\",\n    \"message_details\": \"title\"\n}"
+						}
+					]
 				}
 			],
 			"description": "###### Methods to\n\n- create task and project tag groups\n- create, set and unset task and project tags\n- get a list of task and project tag groups\n- get a list of task and project tags\n    \n\n[API tags docs](https://worksection.com/en/faq/api-tags.html)"
@@ -10183,7 +10190,8 @@
 								"exec": [
 									""
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
 							}
 						}
 					],
@@ -10226,7 +10234,7 @@
 								{
 									"key": "email_user_from",
 									"value": "",
-									"description": "(Optional) Comment author email (required if using admin token; will be set automatically if using access token)",
+									"description": "(Optional) Cost author email (required if using admin token; will be set automatically if using access token)",
 									"disabled": true
 								},
 								{
@@ -10243,7 +10251,7 @@
 								}
 							]
 						},
-						"description": "###### Creates invidual costs for selected task"
+						"description": "###### Creates individual costs for selected task"
 					},
 					"response": [
 						{
@@ -10479,7 +10487,8 @@
 								"exec": [
 									""
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
 							}
 						}
 					],
@@ -10517,7 +10526,7 @@
 								{
 									"key": "is_rate",
 									"value": "",
-									"description": "(Optional) Financial costs are calculated on an hourly rate (money parameter is ignored), possible value: **1**",
+									"description": "(Optional) Financial costs are calculated on an hourly rate, if new time value is specified (money parameter is ignored), possible value: **1**",
 									"disabled": true
 								},
 								{
@@ -10534,7 +10543,7 @@
 								}
 							]
 						},
-						"description": "###### Updates invidual costs of selected task"
+						"description": "###### Updates selected individual costs of task"
 					},
 					"response": [
 						{
@@ -10678,7 +10687,7 @@
 								}
 							]
 						},
-						"description": "###### Deletes invidual costs of selected task"
+						"description": "###### Deletes selected individual costs of task"
 					},
 					"response": [
 						{
@@ -10765,495 +10774,6 @@
 		{
 			"name": "Timers",
 			"item": [
-				{
-					"name": "get_my_timer",
-					"event": [
-						{
-							"listen": "prerequest",
-							"script": {
-								"exec": [
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [],
-						"url": {
-							"raw": "{{account_url}}{{token_uri}}?action=get_my_timer",
-							"host": [
-								"{{account_url}}{{token_uri}}"
-							],
-							"query": [
-								{
-									"key": "action",
-									"value": "get_my_timer",
-									"description": "(Required) API action"
-								}
-							]
-						},
-						"description": "###### Returns authorized user's (oauth2) active timer\n\n**!! User method (available only for access token) !!**"
-					},
-					"response": [
-						{
-							"name": "success",
-							"originalRequest": {
-								"method": "POST",
-								"header": [],
-								"url": {
-									"raw": "{{account_url}}{{token_uri}}?action=get_my_timer",
-									"host": [
-										"{{account_url}}{{token_uri}}"
-									],
-									"query": [
-										{
-											"key": "action",
-											"value": "get_my_timer",
-											"description": "(Required) API action"
-										}
-									]
-								}
-							},
-							"status": "OK",
-							"code": 200,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "Server",
-									"value": "nginx/1.18.0 (Ubuntu)"
-								},
-								{
-									"key": "Date",
-									"value": "Tue, 09 Jan 2024 15:06:08 GMT"
-								},
-								{
-									"key": "Content-Type",
-									"value": "application/json; charset=utf-8"
-								},
-								{
-									"key": "Transfer-Encoding",
-									"value": "chunked"
-								},
-								{
-									"key": "Connection",
-									"value": "keep-alive"
-								},
-								{
-									"key": "Expires",
-									"value": "Thu, 19 Nov 1981 08:52:00 GMT"
-								},
-								{
-									"key": "Cache-Control",
-									"value": "no-store, no-cache, must-revalidate"
-								},
-								{
-									"key": "Pragma",
-									"value": "no-cache"
-								},
-								{
-									"key": "X-Frame-Options",
-									"value": "SAMEORIGIN"
-								},
-								{
-									"key": "Access-Control-Allow-Origin",
-									"value": "*"
-								},
-								{
-									"key": "Content-Encoding",
-									"value": "gzip"
-								}
-							],
-							"cookie": [],
-							"body": "{\n    \"status\": \"ok\",\n    \"data\": {\n        \"time\": 4360,\n        \"date_started\": \"2021-01-01 12:00\",\n        \"task\": {\n            \"id\": \"330090\",\n            \"name\": \"Worksection implementation\",\n            \"page\": \"/project/6622/330090/\",\n            \"status\": \"active\",\n            \"priority\": \"8\",\n            \"user_from\": {\n                \"id\": \"3993\",\n                \"email\": \"henry.gardner@ws.com\",\n                \"name\": \"Henry Gardner\"\n            },\n            \"user_to\": {\n                \"id\": \"2\",\n                \"email\": \"ANY\",\n                \"name\": \"Anyone\"\n            },\n            \"project\": {\n                \"id\": \"6622\",\n                \"name\": \"Performance improvement\",\n                \"page\": \"/project/6622/\"\n            },\n            \"date_added\": \"2021-01-01 11:00\"\n        }\n    }\n}"
-						}
-					]
-				},
-				{
-					"name": "start_my_timer",
-					"event": [
-						{
-							"listen": "prerequest",
-							"script": {
-								"exec": [
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [],
-						"url": {
-							"raw": "{{account_url}}{{token_uri}}?action=start_my_timer&id_task=",
-							"host": [
-								"{{account_url}}{{token_uri}}"
-							],
-							"query": [
-								{
-									"key": "action",
-									"value": "start_my_timer",
-									"description": "(Required) API action"
-								},
-								{
-									"key": "id_task",
-									"value": "",
-									"description": "(Required) Task ID"
-								}
-							]
-						},
-						"description": "###### Starts authorized user's (oauth2) timer in selected task\n\n**!! User method (available only for access token) !!**"
-					},
-					"response": [
-						{
-							"name": "success",
-							"originalRequest": {
-								"method": "POST",
-								"header": [],
-								"url": {
-									"raw": "{{account_url}}{{token_uri}}?action=start_my_timer&id_task=330090",
-									"host": [
-										"{{account_url}}{{token_uri}}"
-									],
-									"query": [
-										{
-											"key": "action",
-											"value": "start_my_timer",
-											"description": "(Required) API action"
-										},
-										{
-											"key": "id_task",
-											"value": "330090",
-											"description": "(Required) Task ID"
-										}
-									]
-								}
-							},
-							"status": "OK",
-							"code": 200,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "Server",
-									"value": "nginx/1.18.0 (Ubuntu)"
-								},
-								{
-									"key": "Date",
-									"value": "Tue, 09 Jan 2024 15:23:58 GMT"
-								},
-								{
-									"key": "Content-Type",
-									"value": "application/json; charset=utf-8"
-								},
-								{
-									"key": "Transfer-Encoding",
-									"value": "chunked"
-								},
-								{
-									"key": "Connection",
-									"value": "keep-alive"
-								},
-								{
-									"key": "Expires",
-									"value": "Thu, 19 Nov 1981 08:52:00 GMT"
-								},
-								{
-									"key": "Cache-Control",
-									"value": "no-store, no-cache, must-revalidate"
-								},
-								{
-									"key": "Pragma",
-									"value": "no-cache"
-								},
-								{
-									"key": "X-Frame-Options",
-									"value": "SAMEORIGIN"
-								},
-								{
-									"key": "Access-Control-Allow-Origin",
-									"value": "*"
-								},
-								{
-									"key": "Content-Encoding",
-									"value": "gzip"
-								}
-							],
-							"cookie": [],
-							"body": "{\n    \"status\": \"ok\"\n}"
-						},
-						{
-							"name": "error",
-							"originalRequest": {
-								"method": "POST",
-								"header": [],
-								"url": {
-									"raw": "{{account_url}}{{token_uri}}?action=start_my_timer&id_task=330090",
-									"host": [
-										"{{account_url}}{{token_uri}}"
-									],
-									"query": [
-										{
-											"key": "action",
-											"value": "start_my_timer",
-											"description": "(Required) API action"
-										},
-										{
-											"key": "id_task",
-											"value": "330090",
-											"description": "(Required) Task ID"
-										}
-									]
-								}
-							},
-							"status": "OK",
-							"code": 200,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "Server",
-									"value": "nginx/1.18.0 (Ubuntu)"
-								},
-								{
-									"key": "Date",
-									"value": "Tue, 09 Jan 2024 15:24:14 GMT"
-								},
-								{
-									"key": "Content-Type",
-									"value": "application/json; charset=utf-8"
-								},
-								{
-									"key": "Transfer-Encoding",
-									"value": "chunked"
-								},
-								{
-									"key": "Connection",
-									"value": "keep-alive"
-								},
-								{
-									"key": "Expires",
-									"value": "Thu, 19 Nov 1981 08:52:00 GMT"
-								},
-								{
-									"key": "Cache-Control",
-									"value": "no-store, no-cache, must-revalidate"
-								},
-								{
-									"key": "Pragma",
-									"value": "no-cache"
-								},
-								{
-									"key": "X-Frame-Options",
-									"value": "SAMEORIGIN"
-								},
-								{
-									"key": "Access-Control-Allow-Origin",
-									"value": "*"
-								},
-								{
-									"key": "Content-Encoding",
-									"value": "gzip"
-								}
-							],
-							"cookie": [],
-							"body": "{\n    \"status\": \"error\",\n    \"status_code\": 6,\n    \"message\": \"Timer is already started\"\n}"
-						}
-					]
-				},
-				{
-					"name": "stop_my_timer",
-					"event": [
-						{
-							"listen": "prerequest",
-							"script": {
-								"exec": [
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [],
-						"url": {
-							"raw": "{{account_url}}{{token_uri}}?action=stop_my_timer",
-							"host": [
-								"{{account_url}}{{token_uri}}"
-							],
-							"query": [
-								{
-									"key": "action",
-									"value": "stop_my_timer",
-									"description": "(Required) API action"
-								},
-								{
-									"key": "comment",
-									"value": "",
-									"description": "(Optional) Timer log comment",
-									"disabled": true
-								}
-							]
-						},
-						"description": "###### Stops and saves authorized user's (oauth2) active timer\n\n**!! User method (only for access token) !!**"
-					},
-					"response": [
-						{
-							"name": "success",
-							"originalRequest": {
-								"method": "POST",
-								"header": [],
-								"url": {
-									"raw": "{{account_url}}{{token_uri}}?action=stop_my_timer&comment=Developed workflow improvement plan for next two weeks",
-									"host": [
-										"{{account_url}}{{token_uri}}"
-									],
-									"query": [
-										{
-											"key": "action",
-											"value": "stop_my_timer",
-											"description": "(Required) API action"
-										},
-										{
-											"key": "comment",
-											"value": "Developed workflow improvement plan for next two weeks",
-											"description": "(Optional) Timer log comment"
-										}
-									]
-								}
-							},
-							"status": "OK",
-							"code": 200,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "Server",
-									"value": "nginx/1.18.0 (Ubuntu)"
-								},
-								{
-									"key": "Date",
-									"value": "Tue, 09 Jan 2024 15:14:04 GMT"
-								},
-								{
-									"key": "Content-Type",
-									"value": "application/json; charset=utf-8"
-								},
-								{
-									"key": "Transfer-Encoding",
-									"value": "chunked"
-								},
-								{
-									"key": "Connection",
-									"value": "keep-alive"
-								},
-								{
-									"key": "Expires",
-									"value": "Thu, 19 Nov 1981 08:52:00 GMT"
-								},
-								{
-									"key": "Cache-Control",
-									"value": "no-store, no-cache, must-revalidate"
-								},
-								{
-									"key": "Pragma",
-									"value": "no-cache"
-								},
-								{
-									"key": "X-Frame-Options",
-									"value": "SAMEORIGIN"
-								},
-								{
-									"key": "Access-Control-Allow-Origin",
-									"value": "*"
-								},
-								{
-									"key": "Content-Encoding",
-									"value": "gzip"
-								}
-							],
-							"cookie": [],
-							"body": "{\n    \"status\": \"ok\"\n}"
-						},
-						{
-							"name": "error",
-							"originalRequest": {
-								"method": "POST",
-								"header": [],
-								"url": {
-									"raw": "{{account_url}}{{token_uri}}?action=stop_my_timer",
-									"host": [
-										"{{account_url}}{{token_uri}}"
-									],
-									"query": [
-										{
-											"key": "action",
-											"value": "stop_my_timer",
-											"description": "(Required) API action"
-										},
-										{
-											"key": "comment",
-											"value": "",
-											"description": "(Optional) Timer log comment",
-											"disabled": true
-										}
-									]
-								}
-							},
-							"status": "OK",
-							"code": 200,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "Server",
-									"value": "nginx/1.18.0 (Ubuntu)"
-								},
-								{
-									"key": "Date",
-									"value": "Tue, 09 Jan 2024 15:14:23 GMT"
-								},
-								{
-									"key": "Content-Type",
-									"value": "application/json; charset=utf-8"
-								},
-								{
-									"key": "Transfer-Encoding",
-									"value": "chunked"
-								},
-								{
-									"key": "Connection",
-									"value": "keep-alive"
-								},
-								{
-									"key": "Expires",
-									"value": "Thu, 19 Nov 1981 08:52:00 GMT"
-								},
-								{
-									"key": "Cache-Control",
-									"value": "no-store, no-cache, must-revalidate"
-								},
-								{
-									"key": "Pragma",
-									"value": "no-cache"
-								},
-								{
-									"key": "X-Frame-Options",
-									"value": "SAMEORIGIN"
-								},
-								{
-									"key": "Access-Control-Allow-Origin",
-									"value": "*"
-								},
-								{
-									"key": "Content-Encoding",
-									"value": "gzip"
-								}
-							],
-							"cookie": [],
-							"body": "{\n    \"status\": \"error\",\n    \"status_code\": 7,\n    \"message\": \"Timer is not started\"\n}"
-						}
-					]
-				},
 				{
 					"name": "get_timers",
 					"event": [
@@ -11547,6 +11067,510 @@
 							],
 							"cookie": [],
 							"body": "{\n    \"status\": \"error\",\n    \"status_code\": 7,\n    \"message\": \"Timer not found\"\n}"
+						}
+					]
+				},
+				{
+					"name": "get_my_timer",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{account_url}}/api/oauth2?action=get_my_timer",
+							"host": [
+								"{{account_url}}"
+							],
+							"path": [
+								"api",
+								"oauth2"
+							],
+							"query": [
+								{
+									"key": "action",
+									"value": "get_my_timer",
+									"description": "(Required) API action"
+								}
+							]
+						},
+						"description": "###### Returns authorized user's (oauth2) active timer\n\n**!! User method (available only for access token) !!**"
+					},
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{account_url}}{{token_uri}}?action=get_my_timer",
+									"host": [
+										"{{account_url}}{{token_uri}}"
+									],
+									"query": [
+										{
+											"key": "action",
+											"value": "get_my_timer",
+											"description": "(Required) API action"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.18.0 (Ubuntu)"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 09 Jan 2024 15:06:08 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Expires",
+									"value": "Thu, 19 Nov 1981 08:52:00 GMT"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-store, no-cache, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"ok\",\n    \"data\": {\n        \"time\": 4360,\n        \"date_started\": \"2021-01-01 12:00\",\n        \"task\": {\n            \"id\": \"330090\",\n            \"name\": \"Worksection implementation\",\n            \"page\": \"/project/6622/330090/\",\n            \"status\": \"active\",\n            \"priority\": \"8\",\n            \"user_from\": {\n                \"id\": \"3993\",\n                \"email\": \"henry.gardner@ws.com\",\n                \"name\": \"Henry Gardner\"\n            },\n            \"user_to\": {\n                \"id\": \"2\",\n                \"email\": \"ANY\",\n                \"name\": \"Anyone\"\n            },\n            \"project\": {\n                \"id\": \"6622\",\n                \"name\": \"Performance improvement\",\n                \"page\": \"/project/6622/\"\n            },\n            \"date_added\": \"2021-01-01 11:00\"\n        }\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "start_my_timer",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{account_url}}/api/oauth2?action=start_my_timer&id_task=",
+							"host": [
+								"{{account_url}}"
+							],
+							"path": [
+								"api",
+								"oauth2"
+							],
+							"query": [
+								{
+									"key": "action",
+									"value": "start_my_timer",
+									"description": "(Required) API action"
+								},
+								{
+									"key": "id_task",
+									"value": "",
+									"description": "(Required) Task ID"
+								}
+							]
+						},
+						"description": "###### Starts authorized user's (oauth2) timer in selected task\n\n**!! User method (available only for access token) !!**"
+					},
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{account_url}}{{token_uri}}?action=start_my_timer&id_task=330090",
+									"host": [
+										"{{account_url}}{{token_uri}}"
+									],
+									"query": [
+										{
+											"key": "action",
+											"value": "start_my_timer",
+											"description": "(Required) API action"
+										},
+										{
+											"key": "id_task",
+											"value": "330090",
+											"description": "(Required) Task ID"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.18.0 (Ubuntu)"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 09 Jan 2024 15:23:58 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Expires",
+									"value": "Thu, 19 Nov 1981 08:52:00 GMT"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-store, no-cache, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"ok\"\n}"
+						},
+						{
+							"name": "error",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{account_url}}{{token_uri}}?action=start_my_timer&id_task=330090",
+									"host": [
+										"{{account_url}}{{token_uri}}"
+									],
+									"query": [
+										{
+											"key": "action",
+											"value": "start_my_timer",
+											"description": "(Required) API action"
+										},
+										{
+											"key": "id_task",
+											"value": "330090",
+											"description": "(Required) Task ID"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.18.0 (Ubuntu)"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 09 Jan 2024 15:24:14 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Expires",
+									"value": "Thu, 19 Nov 1981 08:52:00 GMT"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-store, no-cache, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"error\",\n    \"status_code\": 6,\n    \"message\": \"Timer is already started\"\n}"
+						}
+					]
+				},
+				{
+					"name": "stop_my_timer",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{account_url}}/api/oauth2?action=stop_my_timer",
+							"host": [
+								"{{account_url}}"
+							],
+							"path": [
+								"api",
+								"oauth2"
+							],
+							"query": [
+								{
+									"key": "action",
+									"value": "stop_my_timer",
+									"description": "(Required) API action"
+								},
+								{
+									"key": "comment",
+									"value": "",
+									"description": "(Optional) Timer log comment",
+									"disabled": true
+								}
+							]
+						},
+						"description": "###### Stops and saves authorized user's (oauth2) active timer\n\n**!! User method (only for access token) !!**"
+					},
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{account_url}}{{token_uri}}?action=stop_my_timer&comment=Developed workflow improvement plan for next two weeks",
+									"host": [
+										"{{account_url}}{{token_uri}}"
+									],
+									"query": [
+										{
+											"key": "action",
+											"value": "stop_my_timer",
+											"description": "(Required) API action"
+										},
+										{
+											"key": "comment",
+											"value": "Developed workflow improvement plan for next two weeks",
+											"description": "(Optional) Timer log comment"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.18.0 (Ubuntu)"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 09 Jan 2024 15:14:04 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Expires",
+									"value": "Thu, 19 Nov 1981 08:52:00 GMT"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-store, no-cache, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"ok\"\n}"
+						},
+						{
+							"name": "error",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{account_url}}{{token_uri}}?action=stop_my_timer",
+									"host": [
+										"{{account_url}}{{token_uri}}"
+									],
+									"query": [
+										{
+											"key": "action",
+											"value": "stop_my_timer",
+											"description": "(Required) API action"
+										},
+										{
+											"key": "comment",
+											"value": "",
+											"description": "(Optional) Timer log comment",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.18.0 (Ubuntu)"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 09 Jan 2024 15:14:23 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Expires",
+									"value": "Thu, 19 Nov 1981 08:52:00 GMT"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-store, no-cache, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"error\",\n    \"status_code\": 7,\n    \"message\": \"Timer is not started\"\n}"
 						}
 					]
 				}
@@ -12609,6 +12633,16 @@
 		"type": "oauth2",
 		"oauth2": [
 			{
+				"key": "tokenType",
+				"value": "",
+				"type": "string"
+			},
+			{
+				"key": "accessToken",
+				"value": "",
+				"type": "string"
+			},
+			{
 				"key": "headerPrefix",
 				"value": "",
 				"type": "string"
@@ -12626,16 +12660,6 @@
 			{
 				"key": "scope",
 				"value": "projects_read,projects_write,tasks_read,tasks_write,comments_read,comments_write,costs_read,costs_write,files_read,files_write,tags_read,tags_write,users_read,users_write,contacts_read,contacts_write,administrative",
-				"type": "string"
-			},
-			{
-				"key": "tokenType",
-				"value": "Bearer",
-				"type": "string"
-			},
-			{
-				"key": "accessToken",
-				"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIyYzg5YTY5ZTUwNjIxZjVhMWFiNjBkNzEwYmU1N2JmZSIsImp0aSI6IjdkMjEyZDQxNzRiODBiM2E2MWYyOWJmMGYxYjgzMzc1ZTNiMDllZmJjMjY0YTI5MWE1ZjcxODlhNzE1MTRjMjAzZWFlYTkxY2NhNjQ1YmE2IiwiaWF0IjoxNzA0MzYyNzM1LCJuYmYiOjE3MDQzNjI3MzUsImV4cCI6MTcwNDQ0OTEzNSwic3ViIjoiMzk5MyIsInNjb3BlcyI6WyJwcm9qZWN0c19yZWFkIiwicHJvamVjdHNfd3JpdGUiLCJ0YXNrc19yZWFkIiwidGFza3Nfd3JpdGUiLCJjb3N0c19yZWFkIiwiY29zdHNfd3JpdGUiLCJ0YWdzX3JlYWQiLCJ0YWdzX3dyaXRlIiwiY29tbWVudHNfcmVhZCIsImNvbW1lbnRzX3dyaXRlIiwiZmlsZXNfcmVhZCIsImZpbGVzX3dyaXRlIiwidXNlcnNfcmVhZCIsInVzZXJzX3dyaXRlIiwiY29udGFjdHNfcmVhZCIsImNvbnRhY3RzX3dyaXRlIiwiYWRtaW5pc3RyYXRpdmUiXX0.Ga9VTWc7tqxZ9qbGk1S0MIw4cqAsVVxB57koaF3vf72_SYHvXF81L225Tq16DAxDGoFDdV3nbelQ9PksVikTNcNMQozfSv8Lt9ZHlgsnU28VTtnRCo5GCecGK2GHMHVUtTyiGf62EveRk78z8dhJBJNMOaNldwlzFAm4ila97q1oIoGHwaYFtBeaEhR8Iq1ihVFCTSvqBegD9KhIxsK6TB3kOfHIdx3GiDvpmLyNStxCy5_plz3qTr9EQRmMpO4NdlJBbb4-Etsmq8muSSG27mQ0FalNf2WFtFkwR_mY39sdaAPRKKHNYzCzOzpjdmcNFSW5yePFhb6AG21W3td89A",
 				"type": "string"
 			},
 			{
@@ -12696,8 +12720,12 @@
 					"    var api = pm.collectionVariables.get('api');",
 					"    if (!api) throw new Error(' `api` collection variable is undefined or unchecked');",
 					"",
-					"    var query = pm.request.url.query.filter((x)=>x.disabled!=true).join('&');",
-					"    var hash = CryptoJS.MD5(query + api).toString();",
+					"    var queryString = '';",
+					"    var query = pm.request.url.query.filter((x)=>x.disabled!=true);",
+					"    query.forEach((elem, idx, arr) => queryString += arr[idx].key + '=' + arr[idx].value + '&');",
+					"    queryString = queryString.slice(0, -1);",
+					"    ",
+					"    var hash = CryptoJS.MD5(queryString + api).toString();",
 					"",
 					"    pm.request.addQueryParams('hash=' + hash);",
 					"    pm.collectionVariables.set('token_uri', '/api/admin/v2');",
